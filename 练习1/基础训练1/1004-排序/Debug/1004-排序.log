@@ -1,0 +1,4 @@
+﻿  1004-排序.cpp
+C:\Users\XinyuWang\source\repos\基础训练1\1004-排序\1004-排序.cpp(20,17): warning C4018:  “<”: 有符号/无符号不匹配
+C:\Users\XinyuWang\source\repos\基础训练1\1004-排序\1004-排序.cpp(42,17): warning C4018:  “<”: 有符号/无符号不匹配
+  1004-排序.vcxproj -> C:\Users\XinyuWang\source\repos\基础训练1\Debug\1004-排序.exe
