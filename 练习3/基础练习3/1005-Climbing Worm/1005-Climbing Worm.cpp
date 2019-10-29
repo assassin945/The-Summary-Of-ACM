@@ -3,11 +3,54 @@
 
 #include <iostream>
 using namespace std;
+int n, u, d, current, min;
+void method1() {
+	cin >> n >> u >> d;
+	while (n)
+	{
+		current = 0;
+		min = 0;
+		while (current < n)
+		{
+			min++;
+			current += u;
+			if (current == n || current > n)
+				break;
+			min++;
+			current = current - d;
+		}
+		cout << (min) << endl;
+		cin >> n >> u >> d;
+	}
+}
+void method2() {
+	while (cin>>n>>u>>d)
+	{
+		if (n == 0) {
+			break;
+		}
+		if (u >= n)
+		{
+			cout << 1 << endl;
+		}
+		else {
+			if ((n - u) % (u - d) != 0) {
+				current = (n - u) / (u - d) + 1;//收余数
+			}
+			else {
+				current = (n - u) / (u - d);
+			}
+			min = current * 2 + 1;
+			cout << min << endl;
+		}
+	}
+}
 int main()
 {
-    
+	method1();
+	//method2();
+	return 0;
 }
-
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
 // 调试程序: F5 或调试 >“开始调试”菜单
 
