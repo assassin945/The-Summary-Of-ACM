@@ -1,73 +1,107 @@
 ﻿// 1007-猜数字.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 const int N = 101;
 int n;
 
-struct M {
-	int a, b, c;//a,b,c分别是输入的A，B,C 
-}m[N];
+struct TestNumber
+{
+	int a, b, c;
+}testNumber[N];
 
-int test(int x, int y) {
-	int b[4], c[4], j, i, k = 0, s = 0, f[4] = { 0,0,0,0 };
-	c[0] = x % 10;//////模拟值
-	c[1] = (x / 10) % 10;
-	c[2] = (x / 100) % 10;
-	c[3] = x / 1000;
+int* split(int origin) {
+	int* res = new int[4];
+	res[0] = origin / 1000;
+	res[1] = (origin % 1000) / 100;
+	res[2] = (origin % 100) / 10;
+	res[3] = (origin % 10);
+	return res;
+};
 
-	b[0] = m[y].a % 10;/////输入值
-	b[1] = (m[y].a / 10) % 10;
-	b[2] = (m[y].a / 100) % 10;
-	b[3] = m[y].a / 1000;
+int compare(int guess, int group) {
+	int* gus = split(guess);
+	int* grp = split(testNumber[group].a);
 
-	for (i = 0; i < 4; i++) {//如果模拟值是结果，那么模拟值和输入值相等的位置就是输入正确的位置 
-		if (b[i] == c[i])
-			k++;
+	int correctIndexCounter = 0;
+	int correctValueCounter = 0;
+	int flag[4] = { 0,0,0,0 };
+	//比较猜测值与输入值每位数字的对应关系
+	for (int i = 0; i < 4; i++)
+	{
+		if (gus[i] == grp[i])
+		{
+			correctIndexCounter++;
+		}
 	}
-	if (k != m[y].c)//如果正确位置的个数C和模拟值和输入值相等位数不一样，那么模拟值不是正确结果 
-		return 1;
-
-	for (i = 0; i < 4; i++)//对B进行判断，如果正确个数也相同就是正确结果对于每个输入值的每位只匹配一次 
-		for (j = 0; j < 4; j++) {
-			if (b[i] == c[j] && f[j] == 0)
+	if (correctIndexCounter != testNumber[group].c) {
+		return 0;
+	}
+	//比较猜测值与输入值有多少个相同数字
+	for (int j = 0; j < 4; j++)
+	{
+		for (int k = 0; k < 4; k++)
+		{
+			if (gus[j] == grp[k] && flag[k] == 0)
 			{
-				s++;
-				f[j] = 1;
+				correctValueCounter++;
+				flag[k] = 1;
 				break;
 			}
 		}
-	if (s == m[y].b) return 0;
-	else
+	}
+	if (correctValueCounter == testNumber[group].b)
+	{
 		return 1;
-}
+	}
+	else
+	{
+		return 0;
+	}
+};
 
 int main() {
-	int i, j, k, sign, result;
-	while (cin >> n && n) {
-		k = 0;
-		for (i = 0; i < n; i++)
-			cin >> m[i].a >> m[i].b >> m[i].c;
-		for (i = 1000; i <= 9999; i++) {//因为是4位数 
-			sign = 1;//赋初值为1，表示初始值是不存在正确结果 
-			for (j = 0; j < n; j++) {
-				sign = test(i, j);//模拟值只要不符合一个输入值就不是正确结果，跳出 
-				if (sign) break;
+	int flag;
+	int realNumberCount;
+	int realNumber;
+	while (cin >> n && n != 0)
+	{
+		realNumberCount = 0;
+		//将题目给出的输入值全部存入结构体
+		for (int i = 0; i < n; i++) {
+			cin >> testNumber[i].a >> testNumber[i].b >> testNumber[i].c;
+		}
+		//使用循环来猜测真实值，并与题目所给输入值进行逐位比较，检测比对结果是否与题目所给比对结果相同
+		for (int j = 1000; j < 10000; j++)
+		{
+			flag = 0;//默认猜测的真实值与题目所给输入情况不符
+			for (int k = 0; k < n; k++)
+			{
+				flag = compare(j, k);//调用比较函数，比较猜测值和输入值
+				if (!flag)
+				{
+					break;
+				}
 			}
-			if (!sign) {//如果直到测试完所有输入值模拟值都符合要求，那么它是正确值 
-				k++;
-				result = i;
+			//在全部n组输入测试后如果全部条件符合，则将计数器递增一，并记录猜测值
+			if (flag)
+			{
+				realNumberCount++;
+				realNumber = j;
 			}
 		}
-		if (k == 1)//如果跑完1000到9999，只有一个值符合要求，这就是正确值。 
-			cout << result << endl;
+		//检查计数器，如果是一则找到了结果，否则就是没找到准确结果
+		if (realNumberCount == 1)
+		{
+			cout << realNumber << endl;
+		}
 		else
+		{
 			cout << "Not sure" << endl;
+		}
 	}
-	return 0;
 }
-
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
 // 调试程序: F5 或调试 >“开始调试”菜单
 
