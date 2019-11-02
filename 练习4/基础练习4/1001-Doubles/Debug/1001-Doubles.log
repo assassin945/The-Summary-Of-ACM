@@ -1,0 +1,4 @@
+﻿  1001-Doubles.cpp
+C:\Users\XinyuWang\source\repos\基础练习4\1001-Doubles\1001-Doubles.cpp(26,21): warning C4018:  “<”: 有符号/无符号不匹配
+C:\Users\XinyuWang\source\repos\基础练习4\1001-Doubles\1001-Doubles.cpp(28,22): warning C4018:  “<”: 有符号/无符号不匹配
+  1001-Doubles.vcxproj -> C:\Users\XinyuWang\source\repos\基础练习4\Debug\1001-Doubles.exe

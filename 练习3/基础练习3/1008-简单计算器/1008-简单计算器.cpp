@@ -1,28 +1,60 @@
 ﻿// 1008-简单计算器.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
 
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <stack>
 using namespace std;
+
 int main()
 {
-	/*char ch[201];
-	int length;
-	while (true)
+	char str, c;
+	double a, b;
+	stack <double> num;
+	while (scanf("%lf", &a) != EOF)
 	{
-		cin >> ch;
-		length = strlen(ch);
-		//输入仅为0则视为输入结束
-		if (length == 1 && ch[0] == '0')
-		{
+		while (!num.empty())
+			num.pop();
+		c = getchar();
+		if (c == '\n' && a == 0)
 			break;
-		}
-		//遍历表达式，以空格为分隔
-		for (int i = 0; i < length; i++)
+		num.push(a);
+		scanf("%c", &c);
+		while (scanf("%lf", &b))
 		{
-
+			if (c == '*')                //优先级高，取数，计算
+			{
+				a = num.top();
+				num.pop();
+				num.push(a * b);
+			}
+			else if (c == '/')           //同上
+			{
+				a = num.top();
+				num.pop();
+				num.push(a / b);
+			}
+			else if (c == '+')           //优先级低，先存入栈
+				num.push(b);
+			else if (c == '-')          //减法变成加上那个数的负
+				num.push(-b);
+			c = getchar();
+			if (c == '\n')               //结尾
+				break;
+			scanf("%c", &c);
+			getchar();
 		}
-	}*/
-	
+		double ans = 0.0;
+		while (!num.empty())
+		{
+			ans += num.top();
+			num.pop();
+		}
+		printf("%.2lf\n", ans);
+	}
+	return 0;
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
