@@ -1,0 +1,3 @@
+﻿  1003-Clock.cpp
+C:\Users\XinyuWang\Desktop\文件\算法竞赛\练习4\基础练习4\1003-Clock\1003-Clock.cpp(47,20): warning C4244:  “=”: 从“double”转换到“int”，可能丢失数据
+  1003-Clock.vcxproj -> C:\Users\XinyuWang\Desktop\文件\算法竞赛\练习4\基础练习4\Debug\1003-Clock.exe

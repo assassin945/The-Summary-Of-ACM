@@ -2,41 +2,62 @@
 //
 
 #include <iostream>
-#include <vector>
-#include <algorithm>
 using namespace std;
+int fac[] = { 1,1,2,6,24,120,720,5040,40320 };
+// 存储答案
+int ans[10001], len;
+// 康托展开的逆   n为要对几位数排序，k为第几个数，num为这n个数应该从多少开始
+void reverse_kangtuo(int n, int k, int num)
+{
+	int i, j, t, vst[11] = { 0 };
+	char s[11];
+
+	--k;
+	for (i = 0; i < n; i++)
+	{
+		t = k / fac[n - i - 1];
+		for (j = 1; j <= n; j++)
+			if (!vst[j])
+			{
+				if (t == 0) break;
+				--t;
+			}
+		s[i] = '0' + j;
+		vst[j] = 1;
+		k %= fac[n - i - 1];
+	}
+	// 排序后的赋给答案数组
+	for (int kk = 0; kk < n; ++kk)
+		ans[len++] = s[kk] - '1' + num;
+}
+
 int main()
 {
-	int temp, res;
-	vector<int> a;
-	while (true)
+	int n, m;
+	int i, j, temp1, temp2;
+	while (cin >> n >> m)
 	{
-		res = 0;
-		cin >> temp;
-		if (temp == -1)
+		i = 1;
+		len = 0;
+		if (n > 8)
 		{
-			break;
+			temp1 = n % 8;
+			temp2 = (n / 8 - 1) * 8;
+			// 相应答案赋值
+			for (; i <= temp1; ++i)
+				ans[len++] = i;
+			for (j = 0; j < temp2; ++j, ++i)
+				ans[len++] = i;
+			reverse_kangtuo(8, m, i);
 		}
-		a.push_back(temp);
-		while (cin>>temp && temp)
-		{
-			a.push_back(temp);
-		}
-		sort(a.begin(), a.end());
-		for (int i = 0; i < a.size() - 1; i++)
-		{
-			for (int j = i; j < a.size(); j++)
-			{
-				if (a[j] == (2 * a[i]))
-				{
-					res++;
-					break;
-				}
-			}
-		}
-		cout << res << endl;
-		a.clear();
+		else    reverse_kangtuo(n, m, i);
+
+		// 输出，注意最后一个数后面没有空格
+		for (i = 0; i < len - 1; ++i)
+			cout << ans[i] << " ";
+		cout << ans[len - 1] << endl;
 	}
+	return 0;
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
