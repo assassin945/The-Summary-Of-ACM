@@ -1,47 +1,28 @@
 ﻿// 1004-Ignatius and the Princess II.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
 int main()
 {
+	int i, j, k;
 	int n, m;
-	vector<int> a;
-	while (cin>>n>>m)
-	{
-		a.clear();
-		for (int i = 1; i <= n; i++)
-		{
-			a.push_back(i);
+	int a[1000];
+	while (scanf("%d%d", &n, &m) != EOF) {
+		for (i = 1; i <= n; i++)//进行赋值 
+			a[i] = i;
+
+		for (i = 1; i < m; i++) {
+			next_permutation(a + 1, a + n + 1);
 		}
-		for (int j = 0; j < m; j++)
-		{
-			for (int k = a.size() - 2; k >= 0; k--)
-			{
-				if (a[a.size() - 1] > a[k])
-				{
-					swap(a[k], a[a.size() - 1]);
-					sort(a.begin() + k + 1, a.end());
-					break;
-				}/*
-				else if (a[a.size() - 1] > a[k] && k == a.size() - 1)
-				{
-					swap(a[k], a[a.size() - 1]);
-					break;
-				}
-				else
-				{
-					continue;
-				}*/
-			}
+		for (i = 1; i <= n; i++) {
+			printf("%d", a[i]);
+			if (i != n)
+				printf(" ");
 		}
-		for (int p = 0; p < a.size(); p++)
-		{
-			cout << a[p] << " ";
-		}
-		cout << endl;
+		printf("\n");
 	}
 }
 
