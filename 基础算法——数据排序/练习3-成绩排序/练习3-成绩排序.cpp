@@ -2,10 +2,31 @@
 //
 
 #include <iostream>
+#include <string>
 using namespace std;
 int main()
 {
-    
+	int n;
+	string b[21];
+	int a[21];
+	cin >> n;
+	for (int i = 1; i <= n; i++) {
+		cin >> b[i] >> a[i];
+	}
+	for (int j = 1; j < n; j++) {
+		for (int k = j; k <= n; k++) {
+			if ((a[j] < a[k]) || ((a[j] == a[k]) && b[j] > b[k]))
+			{
+				swap(a[j], a[k]);
+				swap(b[j], b[k]);
+			}
+		}
+	}
+	for (int l = 1; l <= n; l++)
+	{
+		cout << b[l] << " " << a[l] << endl;
+	}
+	return 0;
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
