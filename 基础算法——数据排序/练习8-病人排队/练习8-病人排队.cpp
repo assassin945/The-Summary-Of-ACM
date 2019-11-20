@@ -2,10 +2,52 @@
 //
 
 #include <iostream>
+#include <algorithm>
+#include <string>
 using namespace std;
+int n, x = 0, y = 0, a[101], b[101], p[101];
+string s, bs[101], cs[101];
 int main()
 {
+	cin >> n;
+	for (int i = 1; i <= n; i++) {
+		cin >> s >> a[i];
+		if (a[i] >= 60)
+		{
+			x++;
+			b[x] = a[i];
+			bs[x] = s;
+			p[x] = x;
+		}
+		else
+		{
+			y++;
+			cs[y] = s;
+		}
+	}
+	for (int j = 1; j < x; j++) {
+		for (int k = j + 1; k <= x; k++) {
+			if (b[j] < b[k])
+			{
+				swap(b[j], b[k]);
+				swap(bs[j], bs[k]);
+				swap(p[j], p[k]);
+			}
+			if ((b[j] == b[k]) && (p[j] > p[k]))
+			{
+				swap(b[j], b[k]);
+				swap(bs[j], bs[k]);
+				swap(p[j], p[k]);
 
+			}
+		}
+	}
+	for (int l = 1; l <= x; l++) {
+		cout << bs[l] << endl;
+	}
+	for (int m = 1; m <= y; m++) {
+		cout << cs[m] << endl;
+	}
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
