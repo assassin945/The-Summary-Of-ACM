@@ -35,6 +35,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "练习9-放苹果", "练习
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "练习10-求最大公因数问题", "练习10-求最大公因数问题\练习10-求最大公因数问题.vcxproj", "{1CECFDBF-8DFC-446E-8551-CBEB0894F8EA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "练习11-2的幂次方表示", "练习11-2的幂次方表示\练习11-2的幂次方表示.vcxproj", "{4B3A07F8-83DA-442C-9622-A5DE79830D66}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "练习12-分数求和", "练习12-分数求和\练习12-分数求和.vcxproj", "{0232C6EA-D587-4D64-BC2F-F495484277E0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "练习13-因子分解", "练习13-因子分解\练习13-因子分解.vcxproj", "{65A33940-B375-4EE9-9F85-BDC867FE2602}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "练习14-判断元素是否存在", "练习14-判断元素是否存在\练习14-判断元素是否存在.vcxproj", "{A528EF8C-BBD9-4729-A530-F7506DB1A941}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -171,6 +179,38 @@ Global
 		{1CECFDBF-8DFC-446E-8551-CBEB0894F8EA}.Release|x64.Build.0 = Release|x64
 		{1CECFDBF-8DFC-446E-8551-CBEB0894F8EA}.Release|x86.ActiveCfg = Release|Win32
 		{1CECFDBF-8DFC-446E-8551-CBEB0894F8EA}.Release|x86.Build.0 = Release|Win32
+		{4B3A07F8-83DA-442C-9622-A5DE79830D66}.Debug|x64.ActiveCfg = Debug|x64
+		{4B3A07F8-83DA-442C-9622-A5DE79830D66}.Debug|x64.Build.0 = Debug|x64
+		{4B3A07F8-83DA-442C-9622-A5DE79830D66}.Debug|x86.ActiveCfg = Debug|Win32
+		{4B3A07F8-83DA-442C-9622-A5DE79830D66}.Debug|x86.Build.0 = Debug|Win32
+		{4B3A07F8-83DA-442C-9622-A5DE79830D66}.Release|x64.ActiveCfg = Release|x64
+		{4B3A07F8-83DA-442C-9622-A5DE79830D66}.Release|x64.Build.0 = Release|x64
+		{4B3A07F8-83DA-442C-9622-A5DE79830D66}.Release|x86.ActiveCfg = Release|Win32
+		{4B3A07F8-83DA-442C-9622-A5DE79830D66}.Release|x86.Build.0 = Release|Win32
+		{0232C6EA-D587-4D64-BC2F-F495484277E0}.Debug|x64.ActiveCfg = Debug|x64
+		{0232C6EA-D587-4D64-BC2F-F495484277E0}.Debug|x64.Build.0 = Debug|x64
+		{0232C6EA-D587-4D64-BC2F-F495484277E0}.Debug|x86.ActiveCfg = Debug|Win32
+		{0232C6EA-D587-4D64-BC2F-F495484277E0}.Debug|x86.Build.0 = Debug|Win32
+		{0232C6EA-D587-4D64-BC2F-F495484277E0}.Release|x64.ActiveCfg = Release|x64
+		{0232C6EA-D587-4D64-BC2F-F495484277E0}.Release|x64.Build.0 = Release|x64
+		{0232C6EA-D587-4D64-BC2F-F495484277E0}.Release|x86.ActiveCfg = Release|Win32
+		{0232C6EA-D587-4D64-BC2F-F495484277E0}.Release|x86.Build.0 = Release|Win32
+		{65A33940-B375-4EE9-9F85-BDC867FE2602}.Debug|x64.ActiveCfg = Debug|x64
+		{65A33940-B375-4EE9-9F85-BDC867FE2602}.Debug|x64.Build.0 = Debug|x64
+		{65A33940-B375-4EE9-9F85-BDC867FE2602}.Debug|x86.ActiveCfg = Debug|Win32
+		{65A33940-B375-4EE9-9F85-BDC867FE2602}.Debug|x86.Build.0 = Debug|Win32
+		{65A33940-B375-4EE9-9F85-BDC867FE2602}.Release|x64.ActiveCfg = Release|x64
+		{65A33940-B375-4EE9-9F85-BDC867FE2602}.Release|x64.Build.0 = Release|x64
+		{65A33940-B375-4EE9-9F85-BDC867FE2602}.Release|x86.ActiveCfg = Release|Win32
+		{65A33940-B375-4EE9-9F85-BDC867FE2602}.Release|x86.Build.0 = Release|Win32
+		{A528EF8C-BBD9-4729-A530-F7506DB1A941}.Debug|x64.ActiveCfg = Debug|x64
+		{A528EF8C-BBD9-4729-A530-F7506DB1A941}.Debug|x64.Build.0 = Debug|x64
+		{A528EF8C-BBD9-4729-A530-F7506DB1A941}.Debug|x86.ActiveCfg = Debug|Win32
+		{A528EF8C-BBD9-4729-A530-F7506DB1A941}.Debug|x86.Build.0 = Debug|Win32
+		{A528EF8C-BBD9-4729-A530-F7506DB1A941}.Release|x64.ActiveCfg = Release|x64
+		{A528EF8C-BBD9-4729-A530-F7506DB1A941}.Release|x64.Build.0 = Release|x64
+		{A528EF8C-BBD9-4729-A530-F7506DB1A941}.Release|x86.ActiveCfg = Release|Win32
+		{A528EF8C-BBD9-4729-A530-F7506DB1A941}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
