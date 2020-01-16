@@ -7,6 +7,7 @@ using namespace std;
 void print();
 void search(int);
 int a[1001], b[1001], w[1001], m[1001], tot = 0;
+int step = 0;
 int main()
 {
 	search(1);
