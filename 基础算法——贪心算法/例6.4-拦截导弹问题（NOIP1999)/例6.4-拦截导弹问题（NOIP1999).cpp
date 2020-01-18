@@ -5,27 +5,44 @@
 using namespace std;
 int main()
 {
-	int n, k;
-	int a[1001];
+	int n, k, p;
+	int a[1001], b[1001];
 	memset(a, 0, sizeof(a));
+	memset(b, 0, sizeof(b));
 	while (cin>>n && n > 0)
 	{
-		k = 1;
 		for (int i = 1; i <= n; i++)
 		{
 			cin >> a[i];
 		}
-		for (int i = 1; i < n; i++) {
-			if (a[i+1] > a[i])
+		k = 1;
+		b[k] = a[1];
+		for (int l = 2; l <= n; l++) {
+			p = 0;
+			for (int j = 1; j <= k; j++) {
+				if (b[j]>=a[l])
+				{
+					if (p == 0)
+					{
+						p = j;
+					}
+					else if (b[j]<b[p])
+					{
+						p = j;
+					}
+				}
+			}
+			if (p == 0)
 			{
 				k++;
+				b[k] = a[l];
 			}
 			else
 			{
-				continue;
+				b[p] = a[l];
 			}
 		}
-		cout << k << endl;
+		cout << k;
 	}
 }
 
