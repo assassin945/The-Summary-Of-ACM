@@ -1,5 +1,5 @@
 ﻿// 练习2-最大子矩阵.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//
+// 此题就是暴力破解，遍历全部的子矩阵
 
 #include <iostream>
 using namespace std;
