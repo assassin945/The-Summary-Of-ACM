@@ -29,6 +29,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "练习6-书架", "练习6-�
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "练习7-电池的寿命", "练习7-电池的寿命\练习7-电池的寿命.vcxproj", "{C9DD8CAC-1C32-4E8E-9E85-113336A80082}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "练习8-寻找平面上的极大点", "练习8-寻找平面上的极大点\练习8-寻找平面上的极大点.vcxproj", "{0793A8B5-5B10-44DC-902A-33569766BADF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "练习9-最小新整数", "练习9-最小新整数\练习9-最小新整数.vcxproj", "{8DF2A431-9B3E-40ED-9CE4-6EC4D1B4FB60}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "练习10-Crossing River", "练习10-Crossing River\练习10-Crossing River.vcxproj", "{2E87DD05-DDDF-4B1C-9C0D-2EF8F7A147FF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "练习11-接水问题（NOIP提高组2010普及组第二题）", "练习11-接水问题（NOIP提高组2010普及组第二题）\练习11-接水问题（NOIP提高组2010普及组第二题）.vcxproj", "{65B5CDE7-F109-4B17-92FF-F3C4B40C5E4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -141,6 +149,38 @@ Global
 		{C9DD8CAC-1C32-4E8E-9E85-113336A80082}.Release|x64.Build.0 = Release|x64
 		{C9DD8CAC-1C32-4E8E-9E85-113336A80082}.Release|x86.ActiveCfg = Release|Win32
 		{C9DD8CAC-1C32-4E8E-9E85-113336A80082}.Release|x86.Build.0 = Release|Win32
+		{0793A8B5-5B10-44DC-902A-33569766BADF}.Debug|x64.ActiveCfg = Debug|x64
+		{0793A8B5-5B10-44DC-902A-33569766BADF}.Debug|x64.Build.0 = Debug|x64
+		{0793A8B5-5B10-44DC-902A-33569766BADF}.Debug|x86.ActiveCfg = Debug|Win32
+		{0793A8B5-5B10-44DC-902A-33569766BADF}.Debug|x86.Build.0 = Debug|Win32
+		{0793A8B5-5B10-44DC-902A-33569766BADF}.Release|x64.ActiveCfg = Release|x64
+		{0793A8B5-5B10-44DC-902A-33569766BADF}.Release|x64.Build.0 = Release|x64
+		{0793A8B5-5B10-44DC-902A-33569766BADF}.Release|x86.ActiveCfg = Release|Win32
+		{0793A8B5-5B10-44DC-902A-33569766BADF}.Release|x86.Build.0 = Release|Win32
+		{8DF2A431-9B3E-40ED-9CE4-6EC4D1B4FB60}.Debug|x64.ActiveCfg = Debug|x64
+		{8DF2A431-9B3E-40ED-9CE4-6EC4D1B4FB60}.Debug|x64.Build.0 = Debug|x64
+		{8DF2A431-9B3E-40ED-9CE4-6EC4D1B4FB60}.Debug|x86.ActiveCfg = Debug|Win32
+		{8DF2A431-9B3E-40ED-9CE4-6EC4D1B4FB60}.Debug|x86.Build.0 = Debug|Win32
+		{8DF2A431-9B3E-40ED-9CE4-6EC4D1B4FB60}.Release|x64.ActiveCfg = Release|x64
+		{8DF2A431-9B3E-40ED-9CE4-6EC4D1B4FB60}.Release|x64.Build.0 = Release|x64
+		{8DF2A431-9B3E-40ED-9CE4-6EC4D1B4FB60}.Release|x86.ActiveCfg = Release|Win32
+		{8DF2A431-9B3E-40ED-9CE4-6EC4D1B4FB60}.Release|x86.Build.0 = Release|Win32
+		{2E87DD05-DDDF-4B1C-9C0D-2EF8F7A147FF}.Debug|x64.ActiveCfg = Debug|x64
+		{2E87DD05-DDDF-4B1C-9C0D-2EF8F7A147FF}.Debug|x64.Build.0 = Debug|x64
+		{2E87DD05-DDDF-4B1C-9C0D-2EF8F7A147FF}.Debug|x86.ActiveCfg = Debug|Win32
+		{2E87DD05-DDDF-4B1C-9C0D-2EF8F7A147FF}.Debug|x86.Build.0 = Debug|Win32
+		{2E87DD05-DDDF-4B1C-9C0D-2EF8F7A147FF}.Release|x64.ActiveCfg = Release|x64
+		{2E87DD05-DDDF-4B1C-9C0D-2EF8F7A147FF}.Release|x64.Build.0 = Release|x64
+		{2E87DD05-DDDF-4B1C-9C0D-2EF8F7A147FF}.Release|x86.ActiveCfg = Release|Win32
+		{2E87DD05-DDDF-4B1C-9C0D-2EF8F7A147FF}.Release|x86.Build.0 = Release|Win32
+		{65B5CDE7-F109-4B17-92FF-F3C4B40C5E4D}.Debug|x64.ActiveCfg = Debug|x64
+		{65B5CDE7-F109-4B17-92FF-F3C4B40C5E4D}.Debug|x64.Build.0 = Debug|x64
+		{65B5CDE7-F109-4B17-92FF-F3C4B40C5E4D}.Debug|x86.ActiveCfg = Debug|Win32
+		{65B5CDE7-F109-4B17-92FF-F3C4B40C5E4D}.Debug|x86.Build.0 = Debug|Win32
+		{65B5CDE7-F109-4B17-92FF-F3C4B40C5E4D}.Release|x64.ActiveCfg = Release|x64
+		{65B5CDE7-F109-4B17-92FF-F3C4B40C5E4D}.Release|x64.Build.0 = Release|x64
+		{65B5CDE7-F109-4B17-92FF-F3C4B40C5E4D}.Release|x86.ActiveCfg = Release|Win32
+		{65B5CDE7-F109-4B17-92FF-F3C4B40C5E4D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
