@@ -11,7 +11,7 @@ int bz[4][10] = {
 {1,0,1,1,1,0,0,1,1,1},
 {0,0,0,0,0,0,0,0,1,1} };
 int num = 0;
-void dfs(int,int);
+void bfs(int,int);
 int main()
 {
 	for (int i = 0; i < 4; i++)
@@ -26,7 +26,7 @@ int main()
 	}
 	cout << num << endl;
 }
-void dfs(int p, int q) {
+void bfs(int p, int q) {
 	int x, y, t, w, i;
 	int h[100][3];
 	num++;
