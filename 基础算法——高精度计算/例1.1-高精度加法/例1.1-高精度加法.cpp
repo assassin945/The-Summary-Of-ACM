@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
 #include <cstring>
 #include <cstdio>
 
@@ -12,8 +13,7 @@ int main() {
 	memset(b, 0, sizeof(b));
 	memset(c, 0, sizeof(c));
 
-	gets_s(a1);             //获取加数与被加数
-	gets_s(b1);
+	scanf("%s %s",a1,b1);//获取加数与被加数
 	lena = strlen(a1);
 	lenb = strlen(b1);
 
@@ -41,7 +41,7 @@ int main() {
 	{
 		lenc--;
 	}
-	for (int k = lenc; k >= 0; k--)
+	for (int k = lenc; k > 0; k--)
 	{
 		cout << c[k];
 	}

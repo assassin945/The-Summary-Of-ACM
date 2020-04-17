@@ -18,7 +18,7 @@ For each test case, you should output two lines. The first line is "Case #:", # 
 
 ### Sample Input
 
-```
+```html
 2
 1 2
 112233445566778899 998877665544332211
@@ -26,7 +26,7 @@ For each test case, you should output two lines. The first line is "Case #:", # 
 
 ### Sample Output
 
-```
+```html
 Case 1:
 1 + 2 = 3
 
@@ -37,6 +37,86 @@ Case 2:
 ### Author
 
 Ignatius.L
+
+### Solution
+
+```c++
+#include <iostream>
+#include <cstring>
+using namespace std;
+void printNum(char[]);
+int main(){
+    char a1[1001],b1[1001];
+    int a[1001],b[1001],c[1001];
+    int lena,lenb,lenc;
+    int x;
+    int n,cas,tem;
+    cin>>n;
+    tem=n;
+    cas=1;
+    while (n--)
+    {
+        memset(a,0,sizeof(a));//初始化被加数数组
+        memset(b,0,sizeof(b));//初始化加数数组
+        memset(c,0,sizeof(c));//初始化结果数组
+
+        scanf("%s %s",a1,b1);//获取两个数字
+        lena=strlen(a1);//获取被加数字符串长度
+        lenb=strlen(b1);//获取加数字符串长度
+
+        for (int i = 0; i <= lena-1; i++)//将被加数字符串的每一个字符处理成数字
+        {
+            a[lena-i]=a1[i]-48;
+        }
+        for (int j = 0; j <= lenb-1; j++)//将加数字符串的每一个字符处理成数字
+        {
+            b[lenb-j]=b1[j]-48;
+        }
+        //开始计算
+        lenc=1;
+        x=0;
+        while (lenc<=lena || lenc<=lenb)
+        {
+            c[lenc]=a[lenc]+b[lenc]+x;;
+            x=c[lenc]/10;
+            c[lenc]%=10;
+            lenc++;
+        }
+        //处理最高位
+        c[lenc]=x;
+        if (c[lenc]==0)
+        {
+            lenc--;
+        }
+        //输出
+        cout<<"Case "<<cas<<":"<<endl;
+        printNum(a1);
+        cout<<" + ";
+        printNum(b1);
+        cout<<" = ";
+        for(int k = lenc; k > 0; k--){
+            cout<<c[k];
+        }
+        if (cas!=tem)
+        {
+            cout<<"\n"<<"\n";
+        }
+        else
+        {
+            cout<<"\n";
+        }
+        cas++;
+    }
+    return 0;
+}
+void printNum(char s[]){
+    int len=strlen(s);
+    for (int i = 0; i < len; i++)
+    {
+        cout<<s[i];
+    }
+}
+```
 
 ## 1002-N!(1042)
 
@@ -72,12 +152,50 @@ For each N, output N! in one line.
 
 JGShining（极光炫影）
 
+### Solution
+
+```c++
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+using namespace std;
+int main(){
+    int a[40010];
+    int n,cns,len;
+    while (cin>>n)
+    {
+        memset(a, 0, sizeof(a));
+        a[1] = 1;
+        len = 1;
+        for (int i = 1; i <= n; ++i)
+        {
+            cns = 0;
+            for (int j = 1; j <= len; ++j)
+            {
+                a[j] = a[j] * i + cns;
+                cns = a[j] / 10;
+                a[j] = a[j] % 10;
+                if (cns > 0 && j >= len)
+                {
+                    len++;
+                }
+            }
+        }
+        for (int k = len; k >= 1; k--) {
+            printf("%d",a[k]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+
 ## 1003-Integer Inquiry(1047)
 
 ### Problem Description
 
 One of the first users of BIT's new supercomputer was Chip Diller. He extended his exploration of powers of 3 to go from 0 to 333 and he explored taking various sums of those numbers.
-``This supercomputer is great,'' remarked Chip. ``I only wish Timothy were here to see these results.'' (Chip moved to a new apartment, once one became available on the third floor of the Lemon Sky apartments on Third Street.)
+"This supercomputer is great," remarked Chip. "I only wish Timothy were here to see these results."(Chip moved to a new apartment, once one became available on the third floor of the Lemon Sky apartments on Third Street.)
 
 ### Input
 
@@ -89,7 +207,6 @@ The final input line will contain a single zero on a line by itself.
 
 Your program should output the sum of the VeryLongIntegers given in the input.
 
-
 This problem contains multiple test cases!
 
 The first line of a multiple input is an integer N, then a blank line followed by N input blocks. Each input block is in the format indicated in the problem description. There is a blank line between input blocks.
@@ -98,7 +215,7 @@ The output format consists of N output blocks. There is a blank line between out
 
 ### Sample Input
 
-```
+```html
 1
 
 
@@ -110,13 +227,67 @@ The output format consists of N output blocks. There is a blank line between out
 
 ### Sample Output
 
-```
+```html
 370370367037037036703703703670
 ```
 
 ### Source
 
 East Central North America 1996
+
+### Solution
+
+```c++
+#include <iostream>
+#include<cstdio>
+#include<cstring>
+using namespace std;
+char input[209];
+int sum[209];
+int main()
+{
+    int t;
+    scanf("%d",&t);//实例个数
+    while(t--)
+    {
+        memset(sum,0,sizeof(sum));//初始化总和为0
+        while(true)
+        {
+            scanf("%s",input);//输入的一个大数
+            if(strcmp(input,"0")==0){
+                break;
+            }
+            int len=strlen(input);
+            int i=len-1;
+            for(int j=i; j>=0; j--){
+                sum[i-j]+=input[j]-'0';
+            }   
+        }
+        int c=0;
+        for(int i=0; i<200; i++)//总和进位
+        {
+            int s = c+sum[i];
+            c = s/10;
+            sum[i] = s%10;
+        }
+        int i;
+        for(i=199; i>=0; i--){
+            if(sum[i]!=0)
+            {
+                break;
+            }
+        }
+        //找到总和的最高位，总和的高位在右
+        for(; i>0; i--){
+            printf("%d",sum[i]);
+        }   
+        printf("%d",sum[0]);
+        printf("\n");
+        if(t>0)printf("\n");
+    }
+    return 0;
+}
+```
 
 ## 1004-Simple Algorithmetics(1119)
 
