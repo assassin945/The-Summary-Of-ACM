@@ -1,0 +1,269 @@
+# Exercises-5
+
+> 本次练习主要内容是高精度计算，涉及大整数运算、高精度浮点数运算
+
+## 1001-A + B Problem II(1002)
+
+### Problem Description
+
+I have a very simple problem for you. Given two integers A and B, your job is to calculate the Sum of A + B.
+
+### Input
+
+The first line of the input contains an integer T(1<=T<=20) which means the number of test cases. Then T lines follow, each line consists of two positive integers, A and B. Notice that the integers are very large, that means you should not process them by using 32-bit integer. You may assume the length of each integer will not exceed 1000.
+
+### Output
+
+For each test case, you should output two lines. The first line is "Case #:", # means the number of the test case. The second line is the an equation "A + B = Sum", Sum means the result of A + B. Note there are some spaces int the equation. Output a blank line between two test cases.
+
+### Sample Input
+
+```
+2
+1 2
+112233445566778899 998877665544332211
+```
+
+### Sample Output
+
+```
+Case 1:
+1 + 2 = 3
+
+Case 2:
+112233445566778899 + 998877665544332211 = 1111111111111111110
+```
+
+### Author
+
+Ignatius.L
+
+## 1002-N!(1042)
+
+### Problem Description
+
+Given an integer N(0 ≤ N ≤ 10000), your task is to calculate N!
+
+### Input
+
+One N in one line, process to the end of file.
+
+### Output
+
+For each N, output N! in one line.
+
+### Sample Input
+
+```
+1
+2
+3
+```
+
+### Sample Output
+
+```
+1
+2
+6
+```
+
+### Author
+
+JGShining（极光炫影）
+
+## 1003-Integer Inquiry(1047)
+
+### Problem Description
+
+One of the first users of BIT's new supercomputer was Chip Diller. He extended his exploration of powers of 3 to go from 0 to 333 and he explored taking various sums of those numbers.
+``This supercomputer is great,'' remarked Chip. ``I only wish Timothy were here to see these results.'' (Chip moved to a new apartment, once one became available on the third floor of the Lemon Sky apartments on Third Street.)
+
+### Input
+
+The input will consist of at most 100 lines of text, each of which contains a single VeryLongInteger. Each VeryLongInteger will be 100 or fewer characters in length, and will only contain digits (no VeryLongInteger will be negative).
+
+The final input line will contain a single zero on a line by itself.
+
+### Output
+
+Your program should output the sum of the VeryLongIntegers given in the input.
+
+
+This problem contains multiple test cases!
+
+The first line of a multiple input is an integer N, then a blank line followed by N input blocks. Each input block is in the format indicated in the problem description. There is a blank line between input blocks.
+
+The output format consists of N output blocks. There is a blank line between output blocks.
+
+### Sample Input
+
+```
+1
+
+
+123456789012345678901234567890
+123456789012345678901234567890
+123456789012345678901234567890
+0
+```
+
+### Sample Output
+
+```
+370370367037037036703703703670
+```
+
+### Source
+
+East Central North America 1996
+
+## 1004-Simple Algorithmetics(1119)
+
+### Problem Description
+
+One part of the new WAP portal is also a calculator computing expressions with very long numbers. To make the output look better, the result is formated the same way as is it usually used with manual calculations.
+Your task is to write the core part of this calculator. Given two numbers and the requested operation, you are to compute the result and print it in the form specified below. With addition and subtraction, the numbers are written below each other. Multiplication is a little bit more complex: first of all, we make a partial result for every digit of one of the numbers, and then sum the results together.
+
+### Input
+
+There is a single positive integer T on the first line of input. It stands for the number of expressions to follow. Each expression consists of a single line containing a positive integer number, an operator (one of +, - and *) and the second positive integer number. Every number has at most 500 digits. There are no spaces on the line. If the operation is subtraction, the second number is always lower than the first one. No number will begin with zero.
+
+### Output
+
+For each expression, print two lines with two given numbers, the second number below the first one, last digits (representing unities) must be aligned in the same column. Put the operator right in front of the first digit of the second number. After the second number, there must be a horizontal line made of dashes (-).
+
+For each addition or subtraction, put the result right below the horizontal line, with last digit aligned to the last digit of both operands.
+
+For each multiplication, multiply the first number by each digit of the second number. Put the partial results one below the other, starting with the product of the last digit of the second number. Each partial result should be aligned with the corresponding digit. That means the last digit of the partial product must be in the same column as the digit of the second number. No product may begin with any additional zeros. If a particular digit is zero, the product has exactly one digit -- zero. If the second number has more than one digit, print another horizontal line under the partial results, and then print the sum of them.
+
+There must be minimal number of spaces on the beginning of lines, with respect to other constraints. The horizontal line is always as long as necessary to reach the left and right end of both numbers (and operators) right below and above it. That means it begins in the same column where the leftmost digit or operator of that two lines (one below and one above) is. It ends in the column where is the rightmost digit of that two numbers. The line can be neither longer nor shorter than specified.
+
+Print one blank line after each test case, including the last one.
+
+### Sample Input
+
+```
+4
+12345+67890
+324-111
+325*4405
+1234*4
+```
+
+### Sample Output
+
+```
+ 12345
++67890
+------
+ 80235
+
+ 324
+-111
+----
+ 213
+
+    325
+  *4405
+  -----
+   1625
+     0
+ 1300
+1300
+-------
+1431625
+
+1234
+  *4
+----
+4936
+```
+
+### Source
+
+Central Europe 2000
+
+## 1005-Big Number(1212)
+
+### Problem Description
+
+As we know, Big Number is always troublesome. But it's really important in our ACM. And today, your task is to write a program to calculate A mod B.
+
+To make the problem easier, I promise that B will be smaller than 100000.
+
+Is it too hard? No, I work it out in 10 minutes, and my program contains less than 25 lines.
+
+### Input
+
+The input contains several test cases. Each test case consists of two positive integers A and B. The length of A will not exceed 1000, and B will be smaller than 100000. Process to the end of file.
+
+### Output
+
+For each test case, you have to ouput the result of A mod B.
+
+### Sample Input
+
+```
+2 3
+12 7
+152455856554521 3250
+```
+
+### Sample Output
+
+```
+2
+5
+1521
+```
+
+### Author
+
+Ignatius.L
+
+### Source
+
+杭电ACM省赛集训队选拔赛之热身赛
+
+## 1006-大明A+B(1753)
+
+### Problem Description
+
+话说，经过了漫长的一个多月，小明已经成长了许多，所以他改了一个名字叫“大明”。
+这时他已经不是那个只会做100以内加法的那个“小明”了，现在他甚至会任意长度的正小数的加法。
+
+现在，给你两个正的小数A和B，你的任务是代表大明计算出A+B的值。
+
+### Input
+
+本题目包含多组测试数据，请处理到文件结束。
+每一组测试数据在一行里面包含两个长度不大于400的正小数A和B。
+
+### Output
+
+请在一行里面输出输出A+B的值，请输出最简形式。详细要求请见Sample Output。
+
+### Sample Input
+
+```
+1.1 2.9
+1.1111111111 2.3444323343
+1 1.1
+```
+
+### Sample Output
+
+```
+4
+3.4555434454
+2.1
+```
+
+### Author
+
+linle
+
+### Source
+
+2007省赛集训队练习赛（6）_linle专场
