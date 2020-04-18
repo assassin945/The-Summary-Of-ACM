@@ -355,6 +355,183 @@ Print one blank line after each test case, including the last one.
 
 Central Europe 2000
 
+### Solution
+
+```c++
+#include<iostream>
+#include<string>
+using namespace std;
+#define L 1000
+string add(string a,string b)//只限两个非负整数相加
+{
+    string ans;
+    int na[L]={0},nb[L]={0};
+    int la=a.size(),lb=b.size();
+    for(int i=0;i<la;i++) na[la-1-i]=a[i]-'0';
+    for(int i=0;i<lb;i++) nb[lb-1-i]=b[i]-'0';
+    int lmax=la>lb?la:lb;
+    for(int i=0;i<lmax;i++) na[i]+=nb[i],na[i+1]+=na[i]/10,na[i]%=10;
+    if(na[lmax]) lmax++;
+    for(int i=lmax-1;i>=0;i--) ans+=na[i]+'0';
+    return ans;
+}
+string sub(string a,string b)//只限大的非负整数减小的非负整数
+{
+    string ans;
+    int na[L]={0},nb[L]={0};
+    int la=a.size(),lb=b.size();
+    for(int i=0;i<la;i++) na[la-1-i]=a[i]-'0';
+    for(int i=0;i<lb;i++) nb[lb-1-i]=b[i]-'0';
+    int lmax=la>lb?la:lb;
+    for(int i=0;i<lmax;i++)
+    {
+        na[i]-=nb[i];
+        if(na[i]<0) na[i]+=10,na[i+1]--;
+    }
+    while(!na[--lmax]&&lmax>0)  ;lmax++;
+    for(int i=lmax-1;i>=0;i--) ans+=na[i]+'0';
+    return ans;
+}
+string mul(string a,string b)//高精度乘法a,b,均为非负整数
+{
+    string s;
+    int na[L],nb[L],nc[L],La=a.size(),Lb=b.size();//na存储被乘数，nb存储乘数，nc存储积
+    fill(na,na+L,0);fill(nb,nb+L,0);fill(nc,nc+L,0);//将na,nb,nc都置为0
+    for(int i=La-1;i>=0;i--) na[La-i]=a[i]-'0';//将字符串表示的大整形数转成i整形数组表示的大整形数
+    for(int i=Lb-1;i>=0;i--) nb[Lb-i]=b[i]-'0';
+    for(int i=1;i<=La;i++)
+        for(int j=1;j<=Lb;j++)
+        nc[i+j-1]+=na[i]*nb[j];//a的第i位乘以b的第j位为积的第i+j-1位（先不考虑进位）
+    for(int i=1;i<=La+Lb;i++)
+        nc[i+1]+=nc[i]/10,nc[i]%=10;//统一处理进位
+    if(nc[La+Lb]) s+=nc[La+Lb]+'0';//判断第i+j位上的数字是不是0
+    for(int i=La+Lb-1;i>=1;i--)
+        s+=nc[i]+'0';//将整形数组转成字符串
+    return s;
+}
+void result(string left,string right,int opmode)
+{
+    if(opmode==1)
+    {
+        string res=add(left,right);
+        int maxsize=(right.length()+1)>res.length()?(right.length()+1):res.length();
+        int max=maxsize>left.length()?maxsize:left.length();
+        for(int i=1;i<=max-left.length();i++) cout<<" ";
+        cout<<left<<endl;
+        for(int i=1;i<=max-right.length()-1;i++) cout<<" ";
+        cout<<"+"<<right<<endl;
+        for(int i=1;i<=max-maxsize;i++) cout<<" "; 
+        for(int i=1;i<=maxsize;i++) cout<<"-";
+        cout<<endl;
+        for(int i=1;i<=max-res.length();i++) cout<<" ";
+        cout<<res<<endl;
+    }
+    else if(opmode==2)
+    {
+        string res=sub(left,right);
+        int maxsize=(right.length()+1)>res.length()?(right.length()+1):res.length();
+        int max=maxsize>left.length()?maxsize:left.length();
+        for(int i=1;i<=max-left.length();i++) cout<<" ";
+        cout<<left<<endl;
+        for(int i=1;i<=max-right.length()-1;i++) cout<<" ";
+        cout<<"-"<<right<<endl;
+        for(int i=1;i<=max-maxsize;i++) cout<<" "; 
+        for(int i=1;i<=maxsize;i++) cout<<"-";
+        cout<<endl;
+        for(int i=1;i<=max-res.length();i++) cout<<" ";
+        cout<<res<<endl;
+    }
+    else if(opmode==3)
+    {
+        string res=mul(left,right);
+        if(res[0]=='0') res="0";
+        if(right.length()==1)
+        {
+        
+            int maxsize=2>res.length()?2:res.length();
+            int max=maxsize>left.length()?maxsize:left.length();
+            for(int i=1;i<=max-left.length();i++) cout<<" ";
+            cout<<left<<endl;
+            for(int i=1;i<=max-right.length()-1;i++) cout<<" ";
+            cout<<"*"<<right<<endl;
+            for(int i=1;i<=max-maxsize;i++) cout<<" ";
+            for(int i=1;i<=maxsize;i++) cout<<"-";
+            cout<<endl;
+            for(int i=1;i<=max-res.length();i++) cout<<" ";
+            cout<<res<<endl;
+        }
+        else
+        {
+            string lasttemp=mul(left,to_string(right[0]-'0'));
+            string firsttemp=mul(left,to_string(right[right.length()-1]-'0'));
+            if(firsttemp[0]=='0') firsttemp="0";
+            int maxsize1=(right.length()+1)>firsttemp.length()?(right.length()+1):firsttemp.length();
+            int maxsize2=lasttemp.length()+right.length()-1>res.length()?(lasttemp.length()+right.length()-1):res.length();
+            int max=maxsize1>maxsize2?maxsize1:maxsize2;
+            for(int i=1;i<=max-left.length();i++) cout<<" ";
+            cout<<left<<endl;
+            for(int i=1;i<=max-right.length()-1;i++) cout<<" ";
+            cout<<"*"<<right<<endl;
+            for(int i=1;i<=max-maxsize1;i++) cout<<" ";
+            for(int i=1;i<=maxsize1;i++) cout<<"-";
+            cout<<endl;
+            int pos=0;
+            for(int i=right.length()-1;i>=0;i--)
+            {
+                string temp=mul(left,to_string(right[i]-'0'));
+                if(temp[0]=='0') temp="0";
+                int space=max-temp.length()-pos;
+                for(int i=1;i<=space;i++) cout<<" ";
+                cout<<temp<<endl;
+                pos++;
+            }
+            for(int i=1;i<=max-maxsize2;i++) cout<<" ";
+            for(int i=1;i<=maxsize2;i++) cout<<"-";
+            cout<<endl;
+            for(int i=1;i<=max-res.length();i++) cout<<" ";
+            cout<<res<<endl;
+        }
+    }
+}
+int main()
+{
+    int t;
+    cin>>t;
+    string line;
+    string left;
+    string right;
+    getline(cin,line);
+    while(t--)
+    {
+        getline(cin,line);
+        int oppos;
+        int opmode;
+        if(line.find('+')!=string::npos)   
+        {
+            oppos=line.find('+');
+            opmode=1;
+        }
+        else if(line.find('-')!=string::npos) 
+        {
+            oppos=line.find('-');
+            opmode=2;
+        }
+        else if(line.find('*')!=string::npos) 
+        {
+            oppos=line.find('*');
+            opmode=3;
+        }
+        left=line.substr(0,oppos);
+        right=line.substr(oppos+1,line.length()-1-oppos);
+        result(left,right,opmode);
+        cout<<endl;
+    }
+}
+```
+
+此题是整合了加、减、乘三种高精度计算的题目，难度并不大。比较难以实现的地方是输出格式，
+故此经过尝试后找了答案，原始版本见此题的文件(1004.cpp)。
+
 ## 1005-Big Number(1212)
 
 ### Problem Description
@@ -397,6 +574,32 @@ Ignatius.L
 
 杭电ACM省赛集训队选拔赛之热身赛
 
+### Solution
+
+```c++
+#include<iostream>
+#include<cstring>
+#include<string>
+using namespace std;
+string s;
+long long  Mod;
+int main()
+{
+    int i;
+    while(cin>>s>>Mod){
+        long long ans=0,p=1;
+        int L=s.length()-1;
+        for(i=0;i<=L;i++){
+            ans=(ans*10+s[i]-'0')%Mod;
+        }
+        cout<<ans<<endl;
+    }
+    return 0;
+}
+```
+
+此题的思路和前面大整数计算是一样的，将数字存成字符串，然后逐位进行模运算。
+
 ## 1006-大明A+B(1753)
 
 ### Problem Description
@@ -417,7 +620,7 @@ Ignatius.L
 
 ### Sample Input
 
-```
+```html
 1.1 2.9
 1.1111111111 2.3444323343
 1 1.1
@@ -425,7 +628,7 @@ Ignatius.L
 
 ### Sample Output
 
-```
+```html
 4
 3.4555434454
 2.1
@@ -438,3 +641,76 @@ linle
 ### Source
 
 2007省赛集训队练习赛（6）_linle专场
+
+### Solution
+
+```c++
+#include <iostream>  
+#include<string.h>
+using namespace std;
+int const MAXN = 500;
+char a[500], b[500];
+int c[500], d[500], e[500], f[500], x[500], y[500];
+int main()
+{
+    int i, j, k, m, p, q, len1, len2, t;
+    while (scanf("%s%s", a, b) != EOF)
+    {
+        memset(c, 0,sizeof(c));
+        memset(d, 0, sizeof(d));
+        memset(e, 0, sizeof(e));
+        memset(f, 0, sizeof(f));
+        k = len1 = strlen(a);
+        for (i = 0; i < len1; i++)
+        {
+            if (a[i] == '.'){ k = i; break; }
+        }
+        m = len2 = strlen(b);
+        for (i = 0; i < len2; i++)
+        {
+            if (b[i] == '.'){ m = i; break; }
+        }
+        //转换整数部分
+        for (j = 0, i = k - 1; i >= 0; i--){ c[j++] = a[i] - '0'; }
+        for (j = 0, i = m - 1; i >= 0; i--){ d[j++] = b[i] - '0'; }
+        //转换小数部分
+        for (j = 0, i = k + 1; i < len1; i++){ e[j++] = a[i] - '0'; }
+        for (j = 0, i = m + 1; i < len2; i++){ f[j++] = b[i] - '0'; }
+
+        //计算小数部分
+        q = p = 0;
+        if (len1 - k>len2 - m)p = len1 - k;
+        else p = len2 - m;
+        for (i = p - 1; i >= 0; i--)
+        {
+            x[i] = (e[i] + f[i]+q) % 10;
+            if (e[i] + f[i]+q>=10)q =(e[i]+f[i]+q)/10;
+            else q = 0;
+        }
+        //此时q可能不为0，即小数最高位向整数最低位进位
+        //计算整数部分
+        if (k < m)t = m;
+        else t = k;
+        for (i = 0; i <=t; i++)//有可能最高位有进位，所以i可能达到t
+        {
+            y[i] = (c[i] + d[i] + q) % 10;
+            if (c[i] + d[i] + q >= 10)q = (c[i] + d[i] + q) / 10;
+            else q = 0;
+        }
+        //输出整数部分
+        if (y[t] > 0)//最高位有进位
+            t++;
+        for (i = t-1; i >= 0; i--)printf("%d",y[i]);
+        //消除小数末尾的0
+        while (x[p - 1] == 0)
+        {
+            if (x[p - 1] == 0)p--;
+        }
+        //输出小数部分
+        if (p > 0)printf(".");
+        for (i = 0; i < p; i++)printf("%d",x[i]);
+        printf("\n");
+    }
+    return 0;
+}
+```
