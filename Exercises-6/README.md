@@ -132,13 +132,56 @@ An integer means the number of ECNU coins to be robbed at least.
 ### Sample Output
 
 ```html
-5 
+5
 140
 ```
 
 ### Source
 
 2009 Multi-University Training Contest 18 - Host by ECNU
+
+### Solution
+
+```c++
+#include <iostream>
+#include <cstdio>
+#include <algorithm>
+using namespace std;
+#define LL long long
+struct Road
+{
+    int d,p;
+    bool operator < (const Road &a) const {return p>a.p;}
+}r[10005];
+int main()
+{
+    LL n,m;
+    while(scanf("%I64d%I64d",&n,&m)!=EOF)
+    {
+        if(n==0&&m==0) break;
+        if(n==0) printf("0\n");
+        for(int i=0;i<n;i++) scanf("%d%d",&r[i].d,&r[i].p);
+        sort(r,r+n);
+        LL ans=0,ret=m;
+        bool flag=true;
+        for(int i=0;i<n;i++)
+        {
+            if(!flag) {ans+=(r[i].d*r[i].p);continue;}
+            ret-=r[i].d;
+            if(ret>=0) continue;
+            else
+            {
+                ans+=((-ret)*r[i].p);
+                flag=false;
+            }
+        }
+        printf("%I64d\n",ans);
+    }
+}
+```
+
+此题并不难解，题目中所给的路线都要走一遍，因此只需要将每公里的强盗数排序，然后从强盗数最多的路线开始循环，
+逐步扣除购买护卫的硬币，直到扣完为止，最后求剩余强盗的总和即可得到结果。
 
 ## 1003-Doing Homework again(1789)
 
@@ -157,7 +200,7 @@ For each test case, you should output the smallest total reduced score, one line
 
 ### Sample Input
 
-```
+```html
 3
 3
 3 3 3
@@ -172,7 +215,7 @@ For each test case, you should output the smallest total reduced score, one line
 
 ### Sample Output
 
-```
+```html
 0
 3
 5
@@ -185,6 +228,90 @@ lcy
 ### Source
 
 2007省赛集训队练习赛（10）_以此感谢DOOMIII
+
+### Solution
+
+```c++
+#include <iostream>
+#include <algorithm>
+#include <cstring>
+using namespace std;
+struct homework
+{
+    int ddl;
+    int rs;
+}h[1001];
+bool cmp(homework,homework);
+int main(){
+    int t,n,res;
+    int f[1001],temp;
+    cin>>t;
+    while (t--)
+    {
+        memset(f,0,sizeof(f));
+        res=0;
+        cin>>n;
+        for (int i = 1; i <= n; i++)
+        {
+            cin>>h[i].ddl;
+        }
+        for (int j = 1; j <= n; j++)
+        {
+            cin>>h[j].rs;
+        }
+        sort(h+1,h+n+1,cmp);
+        for (int k = 1; k <= n; k++){
+            temp=h[k].ddl;
+            while (temp)
+            {
+                if (!f[temp])
+                {
+                    f[temp]=1;
+                    break;
+                }
+                else
+                {
+                    temp--;
+                }
+                if (temp==0)
+                {
+                    res+=h[k].rs;
+                }
+            }
+        }
+        cout<<res<<endl;
+    }
+    return 0;
+}
+bool cmp(homework h1,homework h2){
+    if (h1.rs>h2.rs)
+    {
+        return 1;
+    }
+    else if (h1.rs==h2.rs && h1.ddl<h2.ddl)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+```
+
+此题的贪心策略如下：
+
+1. 优先安排扣分最多的作业，让其恰好在deadline那一天完成，或是尽可能的晚。
+
+2. 若是两项作业扣分一致，则哪一项作业的deadline更靠前就先安排哪一项。
+
+设置标记数组，数组下标为对应的天数，设置循环，将循环初始值设为某一项作业的deadline。
+
+- 若该天未安排作业，则将之设为1，然后退出循环。
+
+- 若该天已经安排了作业，则向前查找，直到找到未安排作业的那天
+
+- 若是始终未能找到没有安排作业的一天，说明这项作业只能放弃，进行扣分操作。
 
 ## 1004-Hero(4310)
 
@@ -208,7 +335,7 @@ Output one line for each test, indicates the minimum HP loss.
 
 ### Sample Input
 
-```
+```html
 1
 10 2
 2
@@ -218,7 +345,7 @@ Output one line for each test, indicates the minimum HP loss.
 
 ### Sample Output
 
-```
+```html
 20
 201
 ```
@@ -255,25 +382,25 @@ The output should contain the minimum time in minutes to complete the moving, on
 
 ### Sample Input
 
-```
-3 
-4 
-10 20 
-30 40 
-50 60 
-70 80 
-2 
-1 3 
-2 200 
-3 
-10 100 
-20 80 
-30 50 
+```html
+3
+4
+10 20
+30 40
+50 60
+70 80
+2
+1 3
+2 200
+3
+10 100
+20 80
+30 50
 ```
 
 ### Sample Output
 
-```
+```html
 10
 20
 30
@@ -281,4 +408,4 @@ The output should contain the minimum time in minutes to complete the moving, on
 
 ### Source
 
-Asia 2001, Taejon (South Korea)
+Asia 2001, Taejon(South Korea)
