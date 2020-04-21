@@ -358,6 +358,83 @@ TJU
 
 2012 Multi-University Training Contest 2
 
+### Solution
+
+```c++
+#include <iostream>
+#include <algorithm>
+using namespace std;
+struct hero
+{
+    double dps;
+    double hp;
+}hs[21];
+bool cmp(hero,hero);
+int main(){
+    int n;
+    double res;
+    while (cin>>n)
+    {
+        res=0;
+        for (int i = 0; i < n; i++)
+        {
+            cin>>hs[i].dps>>hs[i].hp;
+        }
+        sort(hs,hs+n,cmp);
+        for (int i = 0; i < n; i++)
+        {
+            res+=(hs[i].hp*hs[i].dps);
+            for (int j = i+1; j < n; j++)
+            {
+                res+=(hs[j].dps*hs[i].hp);
+            }
+        }
+        cout<<res<<endl;
+    }
+    return 0;
+}
+bool cmp(hero h1,hero h2){
+    return ((h1.dps/h1.hp)>(h2.dps/h2.hp));
+}
+```
+
+贪心策略：
+
+1. dps一致则优先击杀hp低的那一个
+
+2. hp一致则优先击杀dps搞得那一个
+
+因此，只需在排序时根据上述原则设置排序规则即可。
+
+此外，还有一种方法，按照dps/hp的比率来进行排序，数值越大的顺序越靠前，从本质上来讲两者是一致的，然而只有第二种方法通过了。
+
+经过检验，发现第一种策略与第二种策略从本质上来讲想法是一致的，
+然而具体到实际问题上来，产生的结果是完全不同的。
+
+```c++
+bool cmp(hero h1,hero h2){
+    if (h1.dps==h2.dps)
+    {
+        return h1.hp<h2.hp;
+    }
+    return h1.dps>h2.dps;
+}
+```
+
+上面这段代码是第一种贪心策略的体现，这种方法乍一看之下没什么，但是对于下面的这个测试就能显现出问题所在了：
+
+```html
+dfs hp
+10  10
+9   1
+```
+
+在第一种贪心策略下，```10   10```这一组会排在前面，而```9   1```这一组会排在后面，经过计算扣除的血量应该是10*(10+9)+1*9，共199点；
+
+在第二种贪心策略下，```9    1```这一组会排在前面，而```10   10```这一组会排在后面，经过计算扣除的血量应该是1*(10+9)+10*10，共119点。
+
+不难看出，第一种贪心策略是有问题的。对于这个错误，可以经过调整来重新确立正确的排序规则，然而会导致排序规则过于复杂，因此应该采取第二种贪心策略。
+
 ## 1005-Moving Tables(1050)
 
 ### Problem Description
