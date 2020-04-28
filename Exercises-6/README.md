@@ -486,3 +486,49 @@ The output should contain the minimum time in minutes to complete the moving, on
 ### Source
 
 Asia 2001, Taejon(South Korea)
+
+### Solution
+
+```c++
+#include <iostream>
+using namespace std;
+int main(){
+    int t,n,left,right,mmax;
+    int vis[203];
+    cin>>t;
+    while (t--)
+    {
+        for (int i = 0; i < 203; i++)
+        {
+            vis[i]=0;
+        }
+        cin>>n;
+        for(int i = 1; i <= n; i++){
+            cin>>left>>right;
+            if(left>right){
+                int tmp=left;
+                left=right;
+                right=tmp;
+            }
+            for (int j = (left+1)/2; j <= (right+1)/2; j++)
+            {//这个位置很关键，一定要把区间折半，不然会超时
+                vis[j]++;
+            }
+        }
+        mmax=0;
+        for (int k = 0; k < 203; k++)
+        {
+            if (vis[k]>mmax)
+            {
+                mmax=vis[k];
+            }
+        }
+        cout<<mmax*10<<endl;
+    }
+    return 0;
+}
+```
+
+这个方法并不符合贪心算法的思想，算是一个巧妙的想法。对于“搬桌子”这个这个操作，由于只有一条过道，可以不管究竟是怎么搬得，完全把他理解成区间覆盖。若存在重叠覆盖区间，说明这个区间被重复使用，也就是说在同一个十分钟内，有数次搬桌子的操作不能同时完成，而这一区间被覆盖的次数自然也就是需要消耗十分钟的次数。推而广之，从整个区间（过道）重复覆盖次数中选取最大值，即为题目所求结果。
+
+符合贪心策略的算法还在思考。
