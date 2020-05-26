@@ -7,7 +7,7 @@
 ### Problem Description
 
 FatMouse prepared M pounds of cat food, ready to trade with the cats guarding the warehouse containing his favorite food, JavaBean.
-The warehouse has N rooms. The i-th room contains J[i] pounds of JavaBeans and requires F[i] pounds of cat food. FatMouse does not have to trade for all the JavaBeans in the room, instead, he may get J[i]* a% pounds of JavaBeans if he pays F[i]* a% pounds of cat food. Here a is a real number. Now he is assigning this homework to you: tell him the maximum amount of JavaBeans he can obtain.
+The warehouse has N rooms. The i-th room contains J[i] pounds of JavaBeans and requires F[i] pounds of cat food. FatMouse does not have to trade for all the JavaBeans in the room, instead, he may get J[i] * a% pounds of JavaBeans if he pays F[i]* a% pounds of cat food. Here a is a real number. Now he is assigning this homework to you: tell him the maximum amount of JavaBeans he can obtain.
 
 ### Input
 
@@ -19,7 +19,7 @@ For each test case, print in a single line a real number accurate up to 3 decima
 
 ### Sample Input
 
-```
+```html
 5 3
 7 2
 4 3
@@ -33,7 +33,7 @@ For each test case, print in a single line a real number accurate up to 3 decima
 
 ### Sample Output
 
-```
+```html
 13.333
 31.500
 ```
@@ -96,7 +96,7 @@ bool cmp(A a1,A a2){
 }
 ```
 
-此题只是常规的贪心思路，只需要将J和F作比较，按着比值由大到小排序即可。问题在于HDU-OJ在运行时出现了严重问题，对于全部的测试数据原始版本并不会出现错误结果，然而对于某些写法了能HDU-OJ编译器与mingw编译器有区别，导致了错误结果。
+此题只是常规的贪心思路，只需要将J和F作比较，按着比值由大到小排序即可。问题在于HDU-OJ在运行时出现了严重问题，对于全部的测试数据原始版本并不会出现错误结果，然而对于某些写法HDU-OJ编译器与mingw编译器存在区别，导致了错误结果。
 
 ## 1002-今年暑假不AC(2037)
 
@@ -121,7 +121,7 @@ bool cmp(A a1,A a2){
 
 ### Sample Input
 
-```
+```html
 12
 1 3
 3 4
@@ -140,7 +140,7 @@ bool cmp(A a1,A a2){
 
 ### Sample Output
 
-```
+```html
 5
 ```
 
@@ -151,6 +151,51 @@ lcy
 ### Source
 
 ACM程序设计期末考试（2006/06/07）
+
+### Solution
+
+```c++
+#include <iostream>
+#include <algorithm>
+using namespace std;
+struct time
+{
+    int b;
+    int e;
+}t[101];
+bool cmp(time,time);
+int main(){
+    int n,end,res;
+    while (cin>>n && n!=0)
+    {
+        for(int i = 0; i < n; i++){
+            cin>>t[i].b>>t[i].e;
+        }
+        sort(t,t+n,cmp);
+        end=t[0].e;
+        res=1;
+        for (int j = 1; j < n; j++)
+        {
+            if (t[j].b>=end)
+            {
+                end=t[j].e;
+                res++;
+            }
+        }
+        cout<<res<<endl;
+    }
+    return 0;
+}
+bool cmp(time t1, time t2){
+    if (t1.e==t2.e)
+    {
+        return t1.b<t2.b;
+    }
+    return t1.e<t2.e;
+}
+```
+
+此题要逆向思考一下，不能依据起始时间进行排序，而是要依据结束时间进行排序，以达到最大的时间覆盖。此题还可以衍生出区间覆盖问题，起始时间就是区间的左端点，结束时间就是区间的右端点，解决方案同理。
 
 ## 1003-Flying to the Mars(1800)
 
