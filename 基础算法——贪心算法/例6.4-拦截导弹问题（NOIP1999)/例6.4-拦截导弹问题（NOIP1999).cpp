@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <cstring>
 using namespace std;
 int main()
 {
@@ -42,7 +43,7 @@ int main()
 				b[p] = a[l];
 			}
 		}
-		cout << k;
+		cout << k << endl;
 	}
 }
 

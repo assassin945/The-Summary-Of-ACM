@@ -230,7 +230,7 @@ For each case, output the minimum number of broomsticks on a single line.
 
 ### Sample Input
 
-```
+```html
 4
 10
 20
@@ -246,7 +246,7 @@ For each case, output the minimum number of broomsticks on a single line.
 
 ### Sample Output
 
-```
+```html
 1
 2
 ```
@@ -254,6 +254,48 @@ For each case, output the minimum number of broomsticks on a single line.
 ### Author
 
 PPF@JLU
+
+### Solution
+
+```c++
+#include <iostream>
+#include <algorithm>
+#include <cstdio>
+using namespace std;
+int main(){
+    int n,mmax,temp;
+    int a[3001];
+    while (scanf("%d",&n)!=EOF)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d",&a[i]);
+        }
+        sort(a,a+n);
+        temp=1;
+        mmax=1;
+        for (int j = 1; j < n; j++)
+        {
+            if (a[j]==a[j-1])
+            {
+                temp++;
+                if (temp>mmax)
+                {
+                    mmax=temp;
+                }
+                continue;//这步很关键，可以减少重复计算
+            }
+            temp=1;
+        }
+        printf("%d\n",mmax);
+    }
+    return 0;
+}
+```
+
+首先要明确一点，题目中说的30位数字不用在意，在HDU-oj中并没有考虑这一点。
+
+此题的解法，关键在于要意识到这样一件事，同一级别的两个士兵，必然要有不同的两个魔术拖把分配给他们。鉴于此，此题就不难解了，我们只需要统计数组中包含士兵最多，也就是重复出现次数最多的级别中，含有多少士兵即可。
 
 ## 1004-最少拦截系统(1257)
 
@@ -272,15 +314,64 @@ PPF@JLU
 
 ### Sample Input
 
-```
+```html
 8 389 207 155 300 299 170 158 65
 ```
 
 ### Sample Output
 
-```
+```html
 2
 ```
+
+### Solution
+
+```c++
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    int n;//导弹数量
+    int p;//需要的反导系统数量
+    int q;//记录器
+    int a[1001];//来袭导弹高度
+    int b[1001];//各系统能够拦截的最大拦截高度
+    while (cin>>n)
+    {
+        for(int i = 1; i <= n; i++){
+            cin>>a[i];
+        }
+        p=1;
+        b[p]=a[1];
+        for(int i = 2; i <= n; i++){
+            q=0;
+            for(int j = 1; j <= p; j++){
+                if(b[j]>=a[i]){
+                    if(q==0){//第一次寻得能够拦截比现在导弹高度更高的导弹的反导系统
+                        q=j;//记录这套反导系统是哪套
+                    }
+                    else if(b[j]<b[q]){//若找到的这套反导系统的最大拦截高度，
+                    //比先前找到的那套反导系统还要更低（更靠近导弹高度），则更新记录
+                        q=j;
+                    }
+                }
+            }
+            if(q==0){//如果记录始终没有变化，则说明当前导弹高度没有系统能够拦截，则需要新增加一套
+                p++;
+                b[p]=a[i];//将当前导弹高度更新为新反导系统的最大拦截高度
+            }
+            else{//如果记录有变化，说明找到了能够应对当前导弹的反导系统
+                b[q]=a[i];//将当前导弹的高度更新为找到的那套反导系统的最大拦截高度
+            }
+        }
+        cout<<p<<endl;//输出结果
+    }
+    return 0;
+}
+```
+
+题解见代码注释
 
 ### Source
 
